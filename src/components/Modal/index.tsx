@@ -111,7 +111,6 @@ const BasicUsage = () => {
                             value={formData.comment}
                             name="comment"
                             placeholder="comment..."
-                            resize={false}
                             rows={4}
                         />
                     </ModalBody>
