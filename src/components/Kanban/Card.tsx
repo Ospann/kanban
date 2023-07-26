@@ -11,7 +11,7 @@ import {
     ModalBody,
     Textarea
 } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useColumnsStore } from '../../store';
 import classes from './Kanban.module.css';
 import ITask from '../../interfaces/ITask';
@@ -28,12 +28,16 @@ const Card = ({ isOpen, onClose, data }: IProps) => {
 
     const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         const { name, value } = event.target;
+        console.log(name, value);
         setFormData((prevFormData) => ({
             ...prevFormData,
             [name]: value,
         }));
-        updateTask(formData.id, formData)
     };
+    
+    useEffect(() => {
+        updateTask(formData.id, formData)
+    }, [formData])
 
     return (
         <>
