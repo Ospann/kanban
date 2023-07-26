@@ -17,7 +17,7 @@ import classes from './Kanban.module.css';
 import ITask from '../../interfaces/ITask';
 
 interface IProps {
-    isOpen: () => void;
+    isOpen: boolean;
     onClose: () => void;
     data: ITask
 }

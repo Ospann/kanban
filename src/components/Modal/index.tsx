@@ -22,7 +22,6 @@ interface IFormData extends ITask {
     columnId: string;
 }
 
-
 const AddModal = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const { addTask } = useColumnsStore();
@@ -31,7 +30,7 @@ const AddModal = () => {
         Due_Date: "",
         columnId: "1",
         comment: "",
-        priority: "Medium",
+        priority: "Medium" as "High" | "Medium" | "Low",
     });
 
     const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {

@@ -3,7 +3,7 @@ interface ITask {
   Task: string;
   Due_Date: string;
   comment: string;
-  priority: "Medium" | "Height" | "Low";
+  priority: "Medium" | "High" | "Low";
   created_Date: string;
 }
 
