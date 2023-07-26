@@ -37,7 +37,7 @@ const Card = ({ isOpen, onClose, data }: IProps) => {
 
     return (
         <>
-            <Modal className={classes.modal} isOpen={isOpen} onClose={onClose} size="xl">
+            <Modal isOpen={isOpen} onClose={onClose} size="xl">
                 <ModalOverlay />
                 <ModalContent>
                     <ModalHeader>{formData.Task}</ModalHeader>
@@ -51,7 +51,7 @@ const Card = ({ isOpen, onClose, data }: IProps) => {
                                 placeholder="Comment..."
                                 rows={10}
                             />
-                            created date: { formData.created_Date}
+                            created date: {formData.created_Date}
                         </Box>
                         <Box>
                             <label htmlFor="priority">Priority</label>

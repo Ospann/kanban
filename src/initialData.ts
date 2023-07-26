@@ -1,4 +1,6 @@
-const initialData = {
+import IColumns from "./interfaces/IColums";
+
+const initialData: IColumns = {
   "1": {
     title: "To-do",
     items: [

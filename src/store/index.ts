@@ -1,13 +1,7 @@
 import { create } from "zustand";
 import ITask from "../interfaces/ITask";
 import initialData from "../initialData";
-
-type Columns = {
-  [key: string]: {
-    title: string;
-    items: ITask[];
-  };
-};
+import IColumns from "../interfaces/IColums";
 
 interface ColumnsState {
   columns: { [key: string]: { title: string; items: ITask[] } };
@@ -37,7 +31,7 @@ export const useColumnsStore = create<ColumnsState>((set) => ({
             acc[columnId] = { ...state.columns[columnId], items };
             return acc;
           },
-          {} as Columns
+          {} as IColumns
         );
         return { filteredData: filteredColumns };
       }
@@ -66,7 +60,7 @@ export const useColumnsStore = create<ColumnsState>((set) => ({
           };
           return acc;
         },
-        {} as Columns
+        {} as IColumns
       );
       return { columns: updatedColumns, filteredData: updatedColumns };
     }),
@@ -76,7 +70,7 @@ export const useColumnsStore = create<ColumnsState>((set) => ({
       return { ...state, columns: newColumns, filteredData: newColumns };
     }),
 
-  updateTask: ({ id, updatedTask }) =>
+  updateTask: (id, updatedTask) =>
     set((state) => {
       const updatedColumns = Object.keys(state.columns).reduce(
         (acc, columnId) => {
@@ -88,7 +82,7 @@ export const useColumnsStore = create<ColumnsState>((set) => ({
           };
           return acc;
         },
-        {} as Columns
+        {} as IColumns
       );
       return { columns: updatedColumns, filteredData: updatedColumns };
     }),

@@ -18,19 +18,17 @@ import { useColumnsStore } from '../../store';
 import classes from './Modal.module.css';
 import ITask from '../../interfaces/ITask';
 
-interface IFormData extends ITask {
-    columnId: string;
-}
-
 const AddModal = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const { addTask } = useColumnsStore();
-    const [formData, setFormData] = useState<IFormData>({
+    const [formData, setFormData] = useState<ITask & { columnId: string }>({
+        id: "",
         Task: "",
         Due_Date: "",
         columnId: "1",
         comment: "",
         priority: "Medium" as "High" | "Medium" | "Low",
+        created_Date: "", 
     });
 
     const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
