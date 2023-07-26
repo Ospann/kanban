@@ -18,6 +18,7 @@ interface ColumnsState {
   }) => void;
   filteredData: { [key: string]: { title: string; items: ITask[] } };
   filter: (name: string) => void;
+  updateTask: (id: string, updatedTask: ITask) => void;
 }
 
 export const useColumnsStore = create<ColumnsState>((set) => ({
@@ -73,5 +74,22 @@ export const useColumnsStore = create<ColumnsState>((set) => ({
   setColumns: (newColumns) =>
     set((state) => {
       return { ...state, columns: newColumns, filteredData: newColumns };
+    }),
+
+  updateTask: ({ id, updatedTask }) =>
+    set((state) => {
+      const updatedColumns = Object.keys(state.columns).reduce(
+        (acc, columnId) => {
+          acc[columnId] = {
+            ...state.columns[columnId],
+            items: state.columns[columnId].items.map((task) =>
+              task.id === id ? updatedTask : task
+            ),
+          };
+          return acc;
+        },
+        {} as Columns
+      );
+      return { columns: updatedColumns, filteredData: updatedColumns };
     }),
 }));
